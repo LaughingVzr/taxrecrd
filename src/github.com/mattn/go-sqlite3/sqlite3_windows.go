@@ -9,6 +9,6 @@ package sqlite3
 /*
 #cgo CFLAGS: -I. -fno-stack-check -fno-stack-protector -mno-stack-arg-probe
 #cgo windows,386 CFLAGS: -D_localtime32=localtime
-#cgo LDFLAGS: -lmingwex -lmingw32 -lgcc_s
+#cgo LDFLAGS: -lmingwex -lmingw32
 */
 import "C"
