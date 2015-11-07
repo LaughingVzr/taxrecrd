@@ -51,7 +51,36 @@ type TaxStat struct {
 	StatCheckT     string  `orm:"column(stat_check_time)"` // 检查时间
 }
 
+/*一张表搞定源文件字段*/
+type TaxRecordRef struct {
+	Id            int     `orm:"auto"` // 自增ID
+	OrgSerialNum  string  // 纳税机构识别码
+	OrgName       string  // 纳税机构名称
+	OrgLegal      string  // 纳税机构法人
+	OrgRegT       int64   `orm:"column(org_reg_time)"` // 纳税机构注册时间
+	OrgAddr       string  `orm:"column(org_address)"`  // 机构地址
+	OrgRegCap     int     // 机构注册资金
+	OrgTaxOffice  string  // 机构主管税务机关
+	OrgIndus      string  `orm:"column(org_industry)"` // 机构所属行业
+	TaxIncome1    float64 // 应纳税收入
+	TaxVat1       float64 // 增值税
+	TaxIncome2    float64 // 应纳税收入
+	TaxVat2       float64 // 增值税
+	TaxIncome3    float64 // 应纳税收入
+	TaxVat3       float64 // 增值税
+	TaxIncomeVal1 float64 // 应缴税所得额
+	TaxIncomeTax1 float64 // 应缴纳所得税
+	TaxIncomeVal2 float64 // 应缴税所得额
+	TaxIncomeTax2 float64 // 应缴纳所得税
+	TaxIncomeVal3 float64 // 应缴税所得额
+	TaxIncomeTax3 float64 // 应缴纳所得税
+	StatTaxSum    float64 // 应纳税总额
+	StatTaxAvg    float64 // 平均应纳税额
+	StatCheckT    int64   `orm:"column(stat_check_time)"` // 检查时间
+
+}
+
 func init() {
 	// 注册模型
-	orm.RegisterModel(new(Organize), new(TaxRecord), new(TaxStat))
+	orm.RegisterModel(new(TaxRecordRef))
 }
