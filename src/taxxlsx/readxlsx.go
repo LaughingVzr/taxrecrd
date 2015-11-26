@@ -45,11 +45,11 @@ func init() {
 	// orm.RunSyncdb("default", false, true)
 }
 
-func ReadAndSave() {
+func ReadAndSave(filePath string) bool {
 	// 文件路径
 	// file := "/Users/Laughing/Downloads/选案资料.xlsx"
-	file := "F:/workspace/go/taxrecrd/file/选案资料.xlsx"
-	xlFile, err := xlsx.OpenFile(file)
+	// file := "F:/workspace/go/taxrecrd/file/选案资料.xlsx"
+	xlFile, err := xlsx.OpenFile(filePath)
 	if err != nil {
 		fmt.Println(err)
 	}
@@ -130,17 +130,22 @@ func ReadAndSave() {
 				// fmt.Print(taxrec)
 				// 插入到数据库
 				saveTaxRec(taxrec)
+			} else {
+				// 如果索引ID为-1则返回导入成功
+				return true
 			}
 		}
 	}
+	return false
 }
 
 /*写到数据库*/
-func saveTaxRec(taxrcf *model.TaxRecordRef) {
+func saveTaxRec(taxrcf *model.TaxRecordRef) bool {
 	// 使用orm接口
 	o := orm.NewOrm()
 	// 写入
 	fmt.Println(o.Insert(taxrcf))
+	return true
 }
 
 /*convert time to unix time (int64)*/
