@@ -1,28 +1,28 @@
 package main
 
 import (
-	"fmt"
-	"github.com/astaxie/beego/orm"
+	_ "fmt"
+	"frame"
+	_ "github.com/astaxie/beego/orm"
 	_ "github.com/mattn/go-sqlite3"
+	_ "model"
 )
-
-type User struct {
-	Id       int
-	UserName string
-	Passwd   string
-}
 
 func init() {
 	// 设置默认数据库
-	orm.RegisterDataBase("default", "sqlite3", "../data/taxrec.db", 30)
-	// 注册Model模型
-	orm.RegisterModel(new(User))
-	orm.RunSyncdb("default", false, true)
+	// orm.RegisterDataBase("default", "sqlite3", "../data/taxrec.db", 30)
+	// 同步db(没有对应表时会建立相应的表)
+	// orm.RunSyncdb("default", false, true)
 }
 
 func main() {
-	o := orm.NewOrm()
-	user := User{Id: 2, UserName: "Lwz", Passwd: "sdlfkjdf"}
-	id, err := o.Insert(&user)
-	fmt.Println("ID:%d,ERR:%v\n", id, err)
+	// 使用orm接口
+	// o := orm.NewOrm()
+
+	// taxrec := new(model.TaxRecordRef)
+	// taxrec.OrgName = "华龙方便面"
+
+	// fmt.Println(o.Insert(taxrec))
+	// xls.ReadAndSave()
+	frame.StartMF()
 }
