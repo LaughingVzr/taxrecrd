@@ -12,7 +12,7 @@ import (
 	model "model"
 	_ "strings"
 	xls "taxxlsx"
-	_ "time"
+	"time"
 )
 
 const (
@@ -116,7 +116,7 @@ func openResultTable(owner walk.Form, param *StatFilter) (int, error) {
 					{Title: "机构码"},
 					{Title: "机构名称"},
 					{Title: "机构法人"},
-					{Title: "机构注册时间", Format: "2006-01-02 15:04:05", Width: 100},
+					{Title: "机构注册时间", Format: "2006-01-02", Width: 100},
 					{Title: "机构地址"},
 					{Title: "机构注册资金"},
 					{Title: "所属税务机关"},
@@ -258,7 +258,7 @@ func (tmw *TaxMainWindow) openFileDia() error {
 func queryData(param *StatFilter) []*model.TaxRecordRef {
 	// 结果集
 	var taxs []*model.TaxRecordRef
-	orm.Debug = true
+	// orm.Debug = true
 
 	o := orm.NewOrm()
 	// 设置要查询的表
@@ -317,7 +317,11 @@ func (m *TaxRecModel) Value(row, col int) interface{} {
 	case 3:
 		return item.OrgLegal
 	case 4:
-		return item.OrgRegT
+		regT := item.OrgRegT
+		if regT == 0 {
+			return ""
+		}
+		return time.Unix(regT, 0)
 	case 5:
 		return item.OrgAddr
 	case 6:
@@ -355,7 +359,11 @@ func (m *TaxRecModel) Value(row, col int) interface{} {
 	case 22:
 		return item.StatTaxAvg
 	case 23:
-		return item.StatCheckT
+		chkT := item.StatCheckT
+		if chkT == 0 {
+			return ""
+		}
+		return time.Unix(chkT, 0)
 	}
 
 	panic("unexpected col")

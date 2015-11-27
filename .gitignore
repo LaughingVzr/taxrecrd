@@ -26,3 +26,7 @@ _testmain.go
 # github library
 github.com/
 .DS_Store
+
+#DB
+file/taxrec.db
+data/taxrec.db
