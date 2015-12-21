@@ -51,32 +51,39 @@ type TaxStat struct {
 	StatCheckT     string  `orm:"column(stat_check_time)"` // 检查时间
 }
 
-/*一张表搞定源文件字段*/
+/*一张表搞定源文件字段(增值纳税人)*/
 type TaxRecordRef struct {
 	Id            int     `orm:"auto"` // 自增ID
-	OrgSerialNum  string  // 纳税机构识别码
 	OrgName       string  // 纳税机构名称
+	OrgSerialNum  string  // 纳税机构识别码
+	OrgIndus      string  `orm:"column(org_industry)"` // 机构所属行业
+	OrgBusScope   string  // 经营范围
 	OrgLegal      string  // 纳税机构法人
 	OrgRegT       int64   `orm:"column(org_reg_time)"` // 纳税机构注册时间
-	OrgAddr       string  `orm:"column(org_address)"`  // 机构地址
-	OrgRegCap     int     // 机构注册资金
+	OrgAddr       string  `orm:"column(org_address)"`  // 生产经营地址
+	OrgRegCap     float64 // 机构注册资本
 	OrgTaxOffice  string  // 机构主管税务机关
-	OrgIndus      string  `orm:"column(org_industry)"` // 机构所属行业
+	OrgIsExport   string  // 是否是出口企业
 	TaxIncome1    float64 // 应纳税收入
+	TaxExIncome1  float64 // 出口收入
 	TaxVat1       float64 // 增值税
+	TaxIncomeTax1 float64 // 所得税
+	TaxSum1       float64 // 本年度税额总和
 	TaxIncome2    float64 // 应纳税收入
+	TaxExIncome2  float64 // 出口收入
 	TaxVat2       float64 // 增值税
+	TaxIncomeTax2 float64 // 所得税
+	TaxSum2       float64 // 本年度税额总和
 	TaxIncome3    float64 // 应纳税收入
+	TaxExIncome3  float64 // 出口收入
 	TaxVat3       float64 // 增值税
-	TaxIncomeVal1 float64 // 应缴税所得额
-	TaxIncomeTax1 float64 // 应缴纳所得税
-	TaxIncomeVal2 float64 // 应缴税所得额
-	TaxIncomeTax2 float64 // 应缴纳所得税
-	TaxIncomeVal3 float64 // 应缴税所得额
 	TaxIncomeTax3 float64 // 应缴纳所得税
-	StatTaxSum    float64 // 应纳税总额
-	StatTaxAvg    float64 // 平均应纳税额
-	StatCheckT    int64   `orm:"column(stat_check_time)"` // 检查时间
+	TaxSum3       float64 // 本年度税额总和
+	StatTaxSum    float64 // 三年纳税统计
+	StatCheckT    int64   `orm:"column(stat_check_time)"` // 稽查时间
+	StatYear      string  `orm:"column(stat_year)"`       // 稽查年度
+	IsImportant   string  `orm:"column(is_important)"`    // 是否是重点税源
+	Status        int     // 记录状态
 
 }
 

@@ -1,11 +1,7 @@
 package main
 
 import (
-	_ "fmt"
 	"frame"
-	_ "github.com/astaxie/beego/orm"
-	_ "github.com/mattn/go-sqlite3"
-	_ "model"
 )
 
 func init() {
