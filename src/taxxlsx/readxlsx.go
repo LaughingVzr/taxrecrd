@@ -62,10 +62,6 @@ func ReadAndSave() {
 			if rnum <= 1 {
 				continue
 			}
-			// if rnum > 3 {
-
-			// 	break
-			// }
 			for index, cell := range row.Cells {
 				// fmt.Print(cell.Value)
 				switch index {
