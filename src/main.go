@@ -1,11 +1,7 @@
 package main
 
 import (
-	_ "fmt"
-	_ "github.com/astaxie/beego/orm"
-	_ "github.com/mattn/go-sqlite3"
-	_ "model"
-	xls "taxxlsx"
+	"frame"
 )
 
 func init() {
@@ -23,5 +19,6 @@ func main() {
 	// taxrec.OrgName = "华龙方便面"
 
 	// fmt.Println(o.Insert(taxrec))
-	xls.ReadAndSave()
+	// xls.ReadAndSave()
+	frame.StartMF()
 }
